@@ -18,7 +18,7 @@ window.addEventListener("load", () => {
 });
 
 // 初始化问候语
-function initGreat() {
+function initGreat () {
 	// 初始化问候语
 	const p = document.getElementById("p-great");
 	p.innerHTML =
@@ -49,7 +49,7 @@ function initGreat() {
 }
 
 // 初始化表格
-function initTable() {
+function initTable () {
 	// 初始化表格
 	const table = document.getElementById("table");
 	table.innerHTML = "";
@@ -102,7 +102,7 @@ function initTable() {
 }
 
 // 更新时间
-function timeUpdate() {
+function timeUpdate () {
 	// 更新表头第一格
 	const timeDiv = document.getElementById("table-first");
 	const hours = String(today.getHours()).padStart(2, '0');
@@ -117,7 +117,7 @@ function timeUpdate() {
 }
 
 // 表格标记
-function onClass() {
+function onClass () {
 	// 清空已有时间段
 	for (const td of document.getElementsByClassName("table-cell")) {
 		td.classList.remove("cell-active");
@@ -130,7 +130,7 @@ function onClass() {
 	}
 }
 
-function getTimeRangeIndex() {
+function getTimeRangeIndex () {
 	const currentTime = today.getHours() * 60 + today.getMinutes();
 	for (let i = 0; i < TIMERANGE.length; i++) {
 		const [start, end] = TIMERANGE[i].split(" - ");
