@@ -5,12 +5,21 @@ const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 const TIMERANGE = ["08:00 - 09:40", "10:00 - 11:40", "14:30 - 16:00", "16:10 - 17:40", "19:00 - 21:30"];
 const today = new Date();
 
-window.addEventListener("load", () => {
+
+// 检测 + 侦听, 防止await占用过长时间
+if (document.readyState === "complete" || document.readyState === "interactive") {
+	init();
+} else {
+	windows.addEventListener("load", init);
+}
+
+// 初始化函数
+function init () {
 	initGreat();
 	initTable();
 	timeUpdate();
 	setInterval(timeUpdate, 30000);
-});
+}
 
 // 初始化问候语
 function initGreat () {
