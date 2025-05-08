@@ -1,14 +1,9 @@
-const {
-	invoke
-} = window.__TAURI__.tauri;
+import { dataLoader } from "./data.js";
+const config = await dataLoader();
 
 const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 const TIMERANGE = ["08:00 - 09:40", "10:00 - 11:40", "14:30 - 16:00", "16:10 - 17:40", "19:00 - 21:30"];
 const today = new Date();
-
-const config = {
-	"user": "Twisuki"
-};
 
 window.addEventListener("load", () => {
 	initGreat();
