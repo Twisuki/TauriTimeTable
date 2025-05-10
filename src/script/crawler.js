@@ -6,8 +6,8 @@ const config = await dataLoader();
 
 const JWURL = "http://hdjw.hnu.edu.cn/Njw2017/index.html#/student";
 
-export async function getTimeTable () {
-	const timeTable = [
+async function getOriginTimeTable () {
+	const originTimeTable = [
 		[{}, {}, {}, {}, {}],
 		[
 			{"name": "普通物理AⅠ", "class": "综417", "week": "1-16"},
@@ -54,5 +54,11 @@ export async function getTimeTable () {
 		]
 	];
 
-	return timeTable;
+	return originTimeTable;
+}
+
+export async function getTimeTable () {
+	const originTimeTable = await getOriginTimeTable();
+
+
 }
