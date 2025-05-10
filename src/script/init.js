@@ -3,7 +3,7 @@ const config = await dataLoader();
 
 const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 const TIMERANGE = ["08:00 - 09:40", "10:00 - 11:40", "14:30 - 16:00", "16:10 - 17:40", "19:00 - 21:30"];
-const today = new Date();
+const myDate = new Date();
 
 let isInitialized = false;
 
@@ -35,7 +35,7 @@ function initGreat () {
 
 	// 时间段
 	const time = document.getElementById("p-time");
-	const hour = today.getHours();
+	const hour = myDate.getHours();
 	if (hour < 3) {
 		time.innerHTML = "晚上";
 	} else if (hour < 10) {
@@ -50,10 +50,10 @@ function initGreat () {
 
 	// 日期
 	const date = document.getElementById("p-date");
-	const year = today.getFullYear();
-	const month = String(today.getMonth() + 1).padStart(2, '0');
-	const day = String(today.getDate()).padStart(2, '0');
-	const weekday = WEEKNAME[today.getDay()];
+	const year = myDate.getFullYear();
+	const month = String(myDate.getMonth() + 1).padStart(2, '0');
+	const day = String(myDate.getDate()).padStart(2, '0');
+	const weekday = WEEKNAME[myDate.getDay()];
 	date.innerHTML = `${year}.${month}.${day} ${weekday}`;
 }
 
@@ -74,8 +74,8 @@ function initTable () {
 
 	// 一周日期
 	const days = [];
-	const sunday = new Date(today);
-	sunday.setDate(today.getDate() - today.getDay());
+	const sunday = new Date(myDate);
+	sunday.setDate(myDate.getDate() - myDate.getDay());
 	for (let i = 0; i < 7; i++) {
 		const date = new Date(sunday);
 		date.setDate(sunday.getDate() + i);
@@ -114,8 +114,8 @@ function initTable () {
 function timeUpdate () {
 	// 更新表头第一格
 	const timeDiv = document.getElementById("table-first");
-	const hours = String(today.getHours()).padStart(2, '0');
-	const minutes = String(today.getMinutes()).padStart(2, '0');
+	const hours = String(myDate.getHours()).padStart(2, '0');
+	const minutes = String(myDate.getMinutes()).padStart(2, '0');
 	timeDiv.innerHTML = `${hours}:${minutes}`;
 
 	// 暴力更新问候语
@@ -134,13 +134,13 @@ function onClass () {
 
 	// 时间段划分
 	if (getTimeRangeIndex() !== -1) {
-		const cellIndex = getTimeRangeIndex() * 7 + today.getDay();
+		const cellIndex = getTimeRangeIndex() * 7 + myDate.getDay();
 		document.getElementsByClassName("table-cell")[cellIndex].classList.add("cell-active");
 	}
 }
 
 function getTimeRangeIndex () {
-	const currentTime = today.getHours() * 60 + today.getMinutes();
+	const currentTime = myDate.getHours() * 60 + myDate.getMinutes();
 	for (let i = 0; i < TIMERANGE.length; i++) {
 		const [start, end] = TIMERANGE[i].split(" - ");
 		const [startHour, startMinute] = start.split(":").map(Number);
