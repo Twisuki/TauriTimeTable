@@ -56,7 +56,7 @@ function initGreat () {
 
 	// 课程
 	if (getTimeRangeIndex() !== -1) {
-		const obj = timeTable[weekday][getTimeRangeIndex()];
+		const obj = timeTable[myDate.getDay()][getTimeRangeIndex()];
 		if (JSON.stringify(obj) !== "{}") {
 			pClass = obj.name;
 			pLocation = obj.class;
