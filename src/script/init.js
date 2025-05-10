@@ -1,5 +1,7 @@
 import { dataLoader } from "./data.js";
+import {getTimeTable} from "./crawler.js";
 const config = await dataLoader();
+const timeTable = await getTimeTable();
 
 const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 const TIMERANGE = ["08:00 - 09:40", "10:00 - 11:40", "14:30 - 16:00", "16:10 - 17:40", "19:00 - 21:30"];
@@ -103,7 +105,11 @@ function initTable () {
 		for (let j = 0; j < 7; j++) {
 			const td = document.createElement("td");
 			td.classList.add("table-cell");
-			td.innerHTML = "物理<br />综417";
+			// td.innerHTML = "物理<br />综417";
+			const obj = timeTable[j][i];
+			if (JSON.stringify(obj) !== "{}") {
+				td.innerHTML = `${obj.name}<br />${obj.class}`;
+			}
 			tr.appendChild(td);
 		}
 		table.appendChild(tr);
