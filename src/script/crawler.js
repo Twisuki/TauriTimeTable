@@ -61,13 +61,15 @@ async function getOriginTimeTable () {
 export async function getTimeTable () {
 	const originTimeTable = await getOriginTimeTable();
 
+	// 计算周数
 	const semesterStart = new Date(config.semesterStart);
 	const weekNum = (function () {
-		const daysDiff = (myDate.getDate() - semesterStart) / (1000 * 60 * 60 * 24);
-		return Math.abs(Math.floor(daysDiff / 7));
+		const timeDiff = myDate.getTime() - semesterStart;
+		const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+		return Math.abs(Math.floor(daysDiff / 7)) + 1;
 	})();
 
-	console.log(weekNum);
+
 
 	const timeTable = [
 		[{}, {}, {}, {}, {}],
@@ -109,4 +111,32 @@ export async function getTimeTable () {
 		]
 	];
 	return timeTable;
+}
+
+// 处理周
+function isThisWeek (week, weekNum) {
+	// 去除空格
+	const normalizedWeek = week.replace(/\s/g, '');
+
+	// 逗号分割
+	const conditions = normalizedWeek.split(',');
+
+	// 逐个检查
+	for (const condition of conditions) {
+		if (condition.includes('-')) {
+			// 范围处理
+			const [start, end] = condition.split('-').map(Number);
+			if (weekNum >= start && weekNum <= end) {
+				return true;
+			}
+		} else {
+			// 数字处理
+			const num = Number(condition);
+			if (weekNum === num) {
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
