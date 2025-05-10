@@ -1,4 +1,3 @@
-// import axios from "axios";
 
 import {dataLoader} from "./data.js";
 
@@ -58,6 +57,7 @@ async function getOriginTimeTable () {
 	return originTimeTable;
 }
 
+// 课表处理
 export async function getTimeTable () {
 	// 计算周数
 	const semesterStart = new Date(config.semesterStart);
