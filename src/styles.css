@@ -27,6 +27,11 @@
 	text-align: center;
 }
 
+#p-great > span {
+	font-size: 0.8em;
+	color: #ffe21c;
+}
+
 #table {
 	width: 90vw;
 	margin-left: auto;
@@ -44,6 +49,16 @@
 
 .table-day, .table-cell {
 	width: 10vw;
+}
+
+.table-cell {
+	border-radius: 0.5em;
+	background-color: #20202080;
+}
+
+.table-cell > span {
+	font-size: 0.8em;
+	color: #ffe21c;
 }
 
 .cell-active {

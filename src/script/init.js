@@ -31,32 +31,48 @@ function init () {
 // 初始化问候语
 function initGreat () {
 	// 初始化问候语
-	const p = document.getElementById("p-great");
-	p.innerHTML =
-		`<span id="p-user">${config.user}</span><span id="p-time">中午</span>好, 今天是<span id="p-date">2025.05.05 Mon.</span><br />当前课程: <span id="p-class">物理</span><span id="p-location">@综417</span>`;
+	var pTime, pDate, pClass, pLocation;
 
 	// 时间段
-	const time = document.getElementById("p-time");
 	const hour = myDate.getHours();
 	if (hour < 3) {
-		time.innerHTML = "晚上";
+		pTime = "晚上";
 	} else if (hour < 10) {
-		time.innerHTML = "上午";
+		pTime = "上午";
 	} else if (hour < 15) {
-		time.innerHTML = "中午";
+		pTime = "中午";
 	} else if (hour < 18) {
-		time.innerHTML = "下午";
+		pTime = "下午";
 	} else {
-		time.innerHTML = "晚上";
+		pTime = "晚上";
 	}
 
 	// 日期
-	const date = document.getElementById("p-date");
 	const year = myDate.getFullYear();
 	const month = String(myDate.getMonth() + 1).padStart(2, '0');
 	const day = String(myDate.getDate()).padStart(2, '0');
 	const weekday = WEEKNAME[myDate.getDay()];
-	date.innerHTML = `${year}.${month}.${day} ${weekday}`;
+	pDate = `${year}.${month}.${day} ${weekday}`;
+
+	// 课程
+	if (getTimeRangeIndex() !== -1) {
+		const obj = timeTable[weekday][getTimeRangeIndex()];
+		if (JSON.stringify(obj) !== "{}") {
+			pClass = obj.name;
+			pLocation = obj.class;
+		} else {
+			pClass = "现在无课";
+			pLocation = ""
+		}
+	} else {
+		pClass = "现在无课";
+		pLocation = ""
+	}
+
+
+	// 写入
+	const p = document.getElementById("p-great");
+	p.innerHTML = `${config.user}${pTime}好, 今天是${pDate}<br />当前课程: ${pClass}<span>${pLocation}</span>`;
 }
 
 // 初始化表格
@@ -108,7 +124,7 @@ function initTable () {
 			// td.innerHTML = "物理<br />综417";
 			const obj = timeTable[j][i];
 			if (JSON.stringify(obj) !== "{}") {
-				td.innerHTML = `${obj.name}<br />${obj.class}`;
+				td.innerHTML = `${obj.name}<br /><span>${obj.class}</span>`;
 			}
 			tr.appendChild(td);
 		}
@@ -145,6 +161,7 @@ function onClass () {
 	}
 }
 
+// 获取时间段
 function getTimeRangeIndex () {
 	const currentTime = myDate.getHours() * 60 + myDate.getMinutes();
 	for (let i = 0; i < TIMERANGE.length; i++) {
