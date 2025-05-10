@@ -1,9 +1,7 @@
-
 import {dataLoader} from "./data.js";
 
 const config = await dataLoader();
 
-const JWURL = "http://hdjw.hnu.edu.cn/Njw2017/index.html#/student";
 const myDate = new Date();
 
 async function getOriginTimeTable () {

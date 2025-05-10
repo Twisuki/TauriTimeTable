@@ -1,5 +1,5 @@
 import { dataLoader } from "./data.js";
-import {getTimeTable} from "./crawler.js";
+import {getTimeTable} from "./timeTable.js";
 const config = await dataLoader();
 const timeTable = await getTimeTable();
 
