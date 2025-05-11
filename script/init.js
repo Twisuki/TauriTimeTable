@@ -138,7 +138,15 @@ function timeUpdate () {
 	const timeDiv = document.getElementById("table-first");
 	const hours = String(myDate.getHours()).padStart(2, '0');
 	const minutes = String(myDate.getMinutes()).padStart(2, '0');
-	timeDiv.innerHTML = `${hours}:${minutes}`;
+
+	const semesterStart = new Date(config.semesterStart);
+	const weekNum = (function () {
+		const timeDiff = myDate.getTime() - semesterStart;
+		const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+		return Math.abs(Math.floor(daysDiff / 7)) + 1;
+	})();
+
+	timeDiv.innerHTML = `${hours}:${minutes}<br/>第${weekNum}周`;
 
 	// 暴力更新问候语
 	initGreat();
