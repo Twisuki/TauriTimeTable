@@ -25,7 +25,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self' https://portal.hnu.edu.cn"
     },
     "bundle": {
       "active": true,
