@@ -1,6 +1,7 @@
-import { dataLoader } from "./data.js";
+import {dataLoader, dataEditor} from "./data.js";
 import {getTimeTable} from "./timeTable.js";
-const config = await dataLoader();
+
+const config = dataLoader();
 const timeTable = await getTimeTable();
 
 const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
@@ -18,7 +19,7 @@ if (document.readyState === "complete" || document.readyState === "interactive")
 
 // 初始化函数
 function init () {
-	if (! isInitialized) {
+	if (!isInitialized) {
 		isInitialized = true;
 
 		initGreat();
@@ -186,3 +187,15 @@ function getTimeRangeIndex () {
 	}
 	return -1;
 }
+
+
+// 编辑
+document.getElementById("data-edit").addEventListener("click", () => {
+	console.log("编辑");
+});
+
+// 重置
+document.getElementById("data-reset").addEventListener("click", () => {
+	console.log("重置");
+	dataEditor();
+});

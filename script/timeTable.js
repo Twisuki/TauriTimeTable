@@ -1,6 +1,6 @@
-import {dataLoader} from "./data.js";
+import {dataLoader, dataEditor} from "./data.js";
 
-const config = await dataLoader();
+const config = dataLoader();
 
 const myDate = new Date();
 
