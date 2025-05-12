@@ -192,10 +192,40 @@ function getTimeRangeIndex () {
 // 编辑
 document.getElementById("data-edit").addEventListener("click", () => {
 	console.log("编辑");
+	// 展示修改框
+	document.getElementById("p-great").classList.add("hide");
+	document.getElementById("table").classList.add("hide");
+	document.getElementById("data-control").classList.add("hide");
+	document.getElementById("data-input").classList.remove("hide");
+
+	// 确认
+	document.getElementById("data-input-confirm").addEventListener("click", () => {
+		// 读取textarea
+		const textarea = document.getElementById("data-area");
+		const text = textarea.value;
+
+		// 编辑
+		try {
+			dataEditor(JSON.parse(text));
+		} catch (e) {
+			console.error(e);
+		}
+
+		location.reload();
+	});
+
+	// 取消
+	document.getElementById("data-input-cancel").addEventListener("click", () => {
+		document.getElementById("p-great").classList.remove("hide");
+		document.getElementById("table").classList.remove("hide");
+		document.getElementById("data-control").classList.remove("hide");
+		document.getElementById("data-input").classList.add("hide");
+	});
 });
 
 // 重置
 document.getElementById("data-reset").addEventListener("click", () => {
 	console.log("重置");
 	dataEditor();
+	location.reload();
 });

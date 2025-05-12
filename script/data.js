@@ -29,10 +29,10 @@ export function dataEditor (newData) {
 	if (newData !== undefined) {
 		localStorage.setItem("LocalData", JSON.stringify(newData));
 		console.log(`LocalData已设为{newData}`);
-		data = JSON.parse(localStorage.getItem("LocalData"));
 	} else {
 		localStorage.setItem("LocalData", JSON.stringify(defaultData));
 		console.log("LocalData已重置");
-		data = JSON.parse(localStorage.getItem("LocalData"));
 	}
+	// 更新data
+	data = JSON.parse(localStorage.getItem("LocalData"));
 }
