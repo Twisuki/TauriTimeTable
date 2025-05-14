@@ -2,15 +2,7 @@
 const defaultData = {
 	"user": "Default0",
 	"semesterStart": "2025-2-16",
-	"timeTable": [
-		[{}, {}, {}, {}, {}],
-		[{}, {}, {}, {}, {}],
-		[{}, {}, {}, {}, {}],
-		[{}, {}, {}, {}, {}],
-		[{}, {}, {}, {}, {}],
-		[{}, {}, {}, {}, {}],
-		[{}, {}, {}, {}, {}]
-	]
+	"timeTable": [[{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}]]
 };
 
 var data = {};
@@ -21,18 +13,21 @@ if (localStorage.getItem("LocalData") !== null) {
 	localStorage.setItem("LocalData", JSON.stringify(defaultData));
 }
 
-function dataLoader () {
-	return data;
-}
-
-function dataEditor (newData) {
-	if (newData !== undefined) {
-		localStorage.setItem("LocalData", JSON.stringify(newData));
-		console.log(`LocalData已设为{newData}`);
-	} else {
-		localStorage.setItem("LocalData", JSON.stringify(defaultData));
-		console.log("LocalData已重置");
+// 导出类
+export class Data {
+	static dataLoader () {
+		return data;
 	}
-	// 更新data
-	data = JSON.parse(localStorage.getItem("LocalData"));
-}
+
+	static dataEditor (newData) {
+		if (newData !== undefined) {
+			localStorage.setItem("LocalData", JSON.stringify(newData));
+			console.log(`LocalData已设为{newData}`);
+		} else {
+			localStorage.setItem("LocalData", JSON.stringify(defaultData));
+			console.log("LocalData已重置");
+		}
+		// 更新data
+		data = JSON.parse(localStorage.getItem("LocalData"));
+	}
+};
