@@ -5,21 +5,22 @@ const defaultData = {
 	"timeTable": [[{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}]]
 };
 
-var data = {};
-if (localStorage.getItem("LocalData") !== null) {
-	data = JSON.parse(localStorage.getItem("LocalData"));
-} else {
-	console.log("LocalData不存在, 初始化");
-	localStorage.setItem("LocalData", JSON.stringify(defaultData));
-}
-
 // 导出类
 export class Data {
-	static dataLoader () {
-		return data;
+	constructor () {
+		if (localStorage.getItem("LocalData") === null) {
+			console.log("LocalData不存在, 初始化");
+			localStorage.setItem("LocalData", JSON.stringify(defaultData));
+		}
+		this.data = JSON.parse(localStorage.getItem("LocalData"));
 	}
 
-	static dataEditor (newData) {
+
+	dataLoader () {
+		return this.data;
+	}
+
+	dataEditor (newData) {
 		if (newData !== undefined) {
 			localStorage.setItem("LocalData", JSON.stringify(newData));
 			console.log(`LocalData已设为{newData}`);
@@ -28,6 +29,6 @@ export class Data {
 			console.log("LocalData已重置");
 		}
 		// 更新data
-		data = JSON.parse(localStorage.getItem("LocalData"));
+		this.data = JSON.parse(localStorage.getItem("LocalData"));
 	}
 };

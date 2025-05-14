@@ -3,17 +3,18 @@ import {Data} from "./data.js";
 export class TimeTable {
 	constructor () {
 		// 导入data
-		const config = Data.dataLoader();
+		const myData = new Data();
+		this.config = myData.dataLoader();
 		// 时间对象
-		const myDate = new Date();
+		this.myDate = new Date();
 	}
 
 	// 课表处理
 	getTimeTable () {
 		// 计算周数
-		const semesterStart = new Date(config.semesterStart);
-		const weekNum = (function () {
-			const timeDiff = myDate.getTime() - semesterStart;
+		const semesterStart = new Date(this.config.semesterStart);
+		const weekNum = (() => {
+			const timeDiff = this.myDate.getTime() - semesterStart;
 			const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
 			return Math.abs(Math.floor(daysDiff / 7)) + 1;
 		})();

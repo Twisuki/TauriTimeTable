@@ -1,12 +1,14 @@
 // 导入data
-import {Data} from "./data";
+import {Data} from "./data.js";
 
-const config = Data.dataLoader();
+const myData = new Data();
+const config = myData.dataLoader();
 
 // 导入课表
-import TimeTable from "./timeTable"
+import {TimeTable} from "./timeTable.js"
 
-const timeTable = TimeTable.getTimeTable();
+const myTimeTable = new TimeTable();
+const timeTable = myTimeTable.getTimeTable();
 
 const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 const TIMERANGE = ["08:00 - 09:40", "10:00 - 11:40", "14:30 - 16:00", "16:10 - 17:40", "19:00 - 21:30"];
