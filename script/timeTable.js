@@ -1,15 +1,15 @@
-// 导入data
 import {Data} from "./data.js";
 
-const config = Data.dataLoader();
-
-// 时间对象
-const myDate = new Date();
-
-// 导出课表函数
 export class TimeTable {
+	constructor () {
+		// 导入data
+		const config = Data.dataLoader();
+		// 时间对象
+		const myDate = new Date();
+	}
+
 	// 课表处理
-	static getTimeTable () {
+	getTimeTable () {
 		// 计算周数
 		const semesterStart = new Date(config.semesterStart);
 		const weekNum = (function () {
@@ -66,7 +66,7 @@ export class TimeTable {
 	}
 
 	// 处理周
-	public isThisWeek (week, weekNum) {
+	isThisWeek (week, weekNum) {
 		// 去除空格
 		const normalizedWeek = week.replace(/\s/g, "");
 
