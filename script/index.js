@@ -79,7 +79,7 @@ function initGreat () {
 
 	// 写入
 	const p = document.getElementById("p-great");
-	p.innerHTML = `${config.user}${pTime}好, 今天是${pDate}<br />当前课程: ${pClass}<span>${pLocation}</span>`;
+	p.innerHTML = `${config.user} ${pTime}好, 今天是${pDate}<br />当前课程: ${pClass} <span>${pLocation}</span>`;
 }
 
 // 初始化表格
@@ -212,7 +212,7 @@ document.getElementById("data-edit").addEventListener("click", () => {
 
 		// 编辑
 		try {
-			dataEditor(JSON.parse(text));
+			myData.dataEditor(JSON.parse(text));
 		} catch (e) {
 			console.error(e);
 		}
@@ -232,6 +232,6 @@ document.getElementById("data-edit").addEventListener("click", () => {
 // 重置
 document.getElementById("data-reset").addEventListener("click", () => {
 	console.log("重置");
-	dataEditor();
+	myData.dataEditor();
 	location.reload();
 });
