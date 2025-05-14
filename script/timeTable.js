@@ -20,7 +20,7 @@ export class TimeTable {
 		})();
 
 		// 处理课表
-		const originTimeTable = config.timeTable;
+		const originTimeTable = this.config.timeTable;
 		const timeTable = [];
 
 		for (const originDayList of originTimeTable) {
