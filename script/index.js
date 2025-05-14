@@ -1,8 +1,5 @@
-import {dataLoader, dataEditor} from "./data.js";
-import {getTimeTable} from "./timeTable.js";
-
 const config = dataLoader();
-const timeTable = await getTimeTable();
+const timeTable = getTimeTable();
 
 const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 const TIMERANGE = ["08:00 - 09:40", "10:00 - 11:40", "14:30 - 16:00", "16:10 - 17:40", "19:00 - 21:30"];

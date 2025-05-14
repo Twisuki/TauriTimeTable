@@ -21,11 +21,11 @@ if (localStorage.getItem("LocalData") !== null) {
 	localStorage.setItem("LocalData", JSON.stringify(defaultData));
 }
 
-export function dataLoader () {
+function dataLoader () {
 	return data;
 }
 
-export function dataEditor (newData) {
+function dataEditor (newData) {
 	if (newData !== undefined) {
 		localStorage.setItem("LocalData", JSON.stringify(newData));
 		console.log(`LocalData已设为{newData}`);

@@ -1,11 +1,9 @@
-import {dataLoader, dataEditor} from "./data.js";
-
 const config = dataLoader();
 
 const myDate = new Date();
 
 // 课表处理
-export async function getTimeTable () {
+function getTimeTable () {
 	// 计算周数
 	const semesterStart = new Date(config.semesterStart);
 	const weekNum = (function () {
