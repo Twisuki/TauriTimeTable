@@ -6,6 +6,7 @@ export class TimeTable {
 		// 导入data
 		const myData = new Data();
 		this.config = myData.dataLoader();
+		this.defaultData = myData.getDefaultData();
 		// 时间对象
 		this.myDate = new Date();
 	}
@@ -24,44 +25,50 @@ export class TimeTable {
 		const originTimeTable = this.config.timeTable;
 		const timeTable = [];
 
-		for (const originDayList of originTimeTable) {
-			const dayList = [];
-			for (const originCell of originDayList) {
-				// 按类别分析
-				if (Array.isArray(originCell)) {
-					// 数组, 分析周数
-					let flag = false;
-					for (const obj of originCell) {
-						if (this.isThisWeek(obj.week, weekNum)) {
-							const cell = {"name": obj.name, "class": obj.class};
-							dayList.push(cell);
-							flag = true;
-							break;
+		try {
+
+			for (const originDayList of originTimeTable) {
+				const dayList = [];
+				for (const originCell of originDayList) {
+					// 按类别分析
+					if (Array.isArray(originCell)) {
+						// 数组, 分析周数
+						let flag = false;
+						for (const obj of originCell) {
+							if (this.isThisWeek(obj.week, weekNum)) {
+								const cell = {"name": obj.name, "class": obj.class};
+								dayList.push(cell);
+								flag = true;
+								break;
+							}
 						}
-					}
-					// 空对象占位
-					if (!flag) {
-						dayList.push({});
-					}
-				} else if (JSON.stringify(originCell) !== "{}") {
-					// 课程对象且非空, 分析周数
-					if (this.isThisWeek(originCell.week, weekNum)) {
-						const cell = {"name": originCell.name, "class": originCell.class};
-						dayList.push(cell);
+						// 空对象占位
+						if (!flag) {
+							dayList.push({});
+						}
+					} else if (JSON.stringify(originCell) !== "{}") {
+						// 课程对象且非空, 分析周数
+						if (this.isThisWeek(originCell.week, weekNum)) {
+							const cell = {"name": originCell.name, "class": originCell.class};
+							dayList.push(cell);
+						} else {
+							dayList.push({});
+						}
 					} else {
+						// 空对象
 						dayList.push({});
 					}
+				}
+
+				if (dayList.length === 5) {
+					timeTable.push(dayList);
 				} else {
-					// 空对象
-					dayList.push({});
+					console.error("课程表解析错误! 课程大小: ", dayList.length);
 				}
 			}
-
-			if (dayList.length === 5) {
-				timeTable.push(dayList);
-			} else {
-				console.error("课程表解析错误! 课程大小: ", dayList.length);
-			}
+		} catch (e) {
+			console.log(`data读取失败! data: ${JSON.stringify(this.config)}`);
+			return this.defaultData.timeTable;
 		}
 
 		return timeTable;
