@@ -7,4 +7,11 @@ export class HtmlAnalizer {
 		const myData = new Data();
 		this.config = myData.dataLoader();
 	}
+
+	// 录入数据
+	analizer (text) {
+		console.log(`接收到${text}`);
+
+		return {};
+	}
 }

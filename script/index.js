@@ -10,6 +10,12 @@ import {TimeTable} from "./timeTable.js"
 const myTimeTable = new TimeTable();
 const timeTable = myTimeTable.getTimeTable();
 
+// 导入分析器
+import {HtmlAnalizer} from "./htmlAnalyzer.js";
+
+const myHtmlAnalizer = new HtmlAnalizer();
+
+// 定义通用名称
 const WEEKNAME = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 const TIMERANGE = ["08:00 - 09:40", "10:00 - 11:40", "14:30 - 16:00", "16:10 - 17:40", "19:00 - 21:30"];
 const myDate = new Date();
@@ -212,12 +218,14 @@ document.getElementById("data-edit").addEventListener("click", () => {
 
 		// 编辑
 		try {
-			myData.dataEditor(JSON.parse(text));
+			const newData = myHtmlAnalizer.analizer(text);
+			myData.dataEditor(newData);
 		} catch (e) {
 			console.error(e);
 		}
 
-		location.reload();
+		// 刷新
+		init();
 	});
 
 	// 取消
@@ -233,5 +241,7 @@ document.getElementById("data-edit").addEventListener("click", () => {
 document.getElementById("data-reset").addEventListener("click", () => {
 	console.log("重置");
 	myData.dataEditor();
-	location.reload();
+
+	// 刷新
+	init();
 });
