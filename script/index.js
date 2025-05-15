@@ -38,6 +38,12 @@ function init () {
 		initTable();
 		timeUpdate();
 		setInterval(timeUpdate, 30000);
+
+		// 关闭编辑模式隐藏的元素
+		document.getElementById("p-great").classList.remove("hide");
+		document.getElementById("table").classList.remove("hide");
+		document.getElementById("data-control").classList.remove("hide");
+		document.getElementById("data-input").classList.add("hide");
 	}
 }
 
@@ -225,6 +231,7 @@ document.getElementById("data-edit").addEventListener("click", () => {
 		}
 
 		// 刷新
+		isInitialized = false;
 		init();
 	});
 
@@ -243,5 +250,6 @@ document.getElementById("data-reset").addEventListener("click", () => {
 	myData.dataEditor();
 
 	// 刷新
+	isInitialized = false;
 	init();
 });

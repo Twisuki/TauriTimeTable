@@ -158,7 +158,7 @@ export class Data {
 	dataEditor (newData) {
 		if (newData !== undefined) {
 			localStorage.setItem("LocalData", JSON.stringify(newData));
-			console.log(`LocalData已设为${newData}`);
+			console.log(`LocalData已设为${JSON.stringify(newData)}`);
 		} else {
 			localStorage.setItem("LocalData", JSON.stringify(defaultData));
 			console.log("LocalData已重置");
