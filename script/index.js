@@ -231,8 +231,7 @@ document.getElementById("data-edit").addEventListener("click", () => {
 		}
 
 		// 刷新
-		isInitialized = false;
-		init();
+		location.reload();
 	});
 
 	// 取消
@@ -250,6 +249,5 @@ document.getElementById("data-reset").addEventListener("click", () => {
 	myData.dataEditor();
 
 	// 刷新
-	isInitialized = false;
-	init();
+	location.reload();
 });
