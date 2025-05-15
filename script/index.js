@@ -44,6 +44,8 @@ function init () {
 		document.getElementById("table").classList.remove("hide");
 		document.getElementById("data-control").classList.remove("hide");
 		document.getElementById("data-input").classList.add("hide");
+
+		console.log("初始化完成!");
 	}
 }
 
@@ -209,7 +211,7 @@ function getTimeRangeIndex () {
 
 // 编辑
 document.getElementById("data-edit").addEventListener("click", () => {
-	console.log("编辑");
+	console.log("编辑模式.");
 	// 展示修改框
 	document.getElementById("p-great").classList.add("hide");
 	document.getElementById("table").classList.add("hide");
@@ -218,6 +220,7 @@ document.getElementById("data-edit").addEventListener("click", () => {
 
 	// 确认
 	document.getElementById("data-input-confirm").addEventListener("click", () => {
+		console.log("确认编辑.");
 		// 读取textarea
 		const textarea = document.getElementById("data-area");
 		const text = textarea.value;
@@ -236,6 +239,7 @@ document.getElementById("data-edit").addEventListener("click", () => {
 
 	// 取消
 	document.getElementById("data-input-cancel").addEventListener("click", () => {
+		console.log("取消编辑.");
 		document.getElementById("p-great").classList.remove("hide");
 		document.getElementById("table").classList.remove("hide");
 		document.getElementById("data-control").classList.remove("hide");
@@ -245,7 +249,7 @@ document.getElementById("data-edit").addEventListener("click", () => {
 
 // 重置
 document.getElementById("data-reset").addEventListener("click", () => {
-	console.log("重置");
+	console.log("重置.");
 	myData.dataEditor();
 
 	// 刷新

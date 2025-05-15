@@ -50,18 +50,14 @@ export class HtmlAnalizer {
 					const classWeek = match[1];
 
 					timeTable[j - 10][i] = {
-						"name" : className,
-						"class" : classClass,
-						"week" : classWeek
+						"name": className, "class": classClass, "week": classWeek
 					}
 				}
 			}
 		}
 
 		return {
-			"user": "Twisuki",
-			"semesterStart": "2025-2-16",
-			"timeTable": timeTable
+			"user": "Twisuki", "semesterStart": "2025-2-16", "timeTable": timeTable
 		};
 	}
 }
