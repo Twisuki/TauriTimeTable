@@ -1,5 +1,6 @@
 import {Data} from "./data.js";
 
+// 转换data为本周课表
 export class TimeTable {
 	constructor () {
 		// 导入data
